@@ -16,8 +16,6 @@ def hello():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    model = pickle.load(open('data/model_acoruña','rb'))
-
     req = request.get_json()
     predict_data = []
         # chequear location
@@ -25,9 +23,9 @@ def predict():
     for val in req.values():
         predict_data.append(int(val))
     
-    model = pickle.load('rf.regressor.pkl')
-    prediction = model.predict(predict_data)
+    model = pickle.load(open('../notebooks/rf_regressor.pkl','rb'))
+    prediction = model.predict([predict_data])
 
-    return prediction[0]
+    return str(prediction[0])
 
 app.run()
