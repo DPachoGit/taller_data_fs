@@ -23,7 +23,7 @@ def predict():
     for val in req.values():
         predict_data.append(int(val))
     
-    model = pickle.load(open('../notebooks/rf_regressor.pkl','rb'))
+    model = pickle.load(open('rf_regressor.pkl','rb'))
     prediction = model.predict([predict_data])
 
     return str(prediction[0])
